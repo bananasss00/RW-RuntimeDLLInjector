@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<packageId>pirateby.runtimecodeinjector</packageId>
+	<name>Runtime DLL Injector</name>
+	<author>PirateBY</author>
+	<supportedVersions>
+		<li>1.1</li>
+		<li>1.2</li>
+	</supportedVersions>
+	<description>Runtime DLL Injector</description>
+</ModMetaData>
