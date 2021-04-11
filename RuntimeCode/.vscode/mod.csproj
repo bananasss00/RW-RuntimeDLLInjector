@@ -27,11 +27,7 @@
 	 	<Compile Include="../*" />
 
 	 	<!-- Rimworld -->
-	 	<Reference Include="k:/Games/Rimworld_R1.2-HSK/3-MyPack/#PACKAGES_1.2#/*.dll">
-			<Private>False</Private>
-		</Reference>
-
-	 	<Reference Include="k:/Games/Rimworld_R1.2-HSK/3-MyPack/#PACKAGES_1.2#/publicized_assemblies/*.dll">
+	 	<Reference Include="../../packages/*.dll">
 			<Private>False</Private>
 		</Reference>
 
