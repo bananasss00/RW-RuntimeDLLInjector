@@ -16,10 +16,11 @@ namespace RuntimeDLLInjector
         private static bool patched;
 
         [HarmonyPrepare]
-        public static void Prepare() {
+        public static bool Prepare() {
             LongEventHandler.ExecuteWhenFinished(() => {
                 if (!patched) Log.Error("DevToolStarterOnGUI_Patch could not be applied.");
             });
+            return true;
         }
 
         [HarmonyTranspiler]
@@ -47,10 +48,11 @@ namespace RuntimeDLLInjector
 		private static bool patched;
 
 		[HarmonyPrepare]
-		public static void Prepare() {
+		public static bool Prepare() {
 			LongEventHandler.ExecuteWhenFinished(() => {
 				if (!patched) Log.Warning("DebugWindowsOpener_Patch could not be applied.");
 			});
+            return true;
 		}
 
         [HarmonyTranspiler]
@@ -59,7 +61,7 @@ namespace RuntimeDLLInjector
             var instructionsArr = instructions.ToArray();
             var widgetRowField = AccessTools.Field(typeof(DebugWindowsOpener), "widgetRow");
             foreach (var inst in instructionsArr) {
-                if (!patched && widgetRowField != null && inst.opcode == OpCodes.Bne_Un_S)
+                if (!patched && widgetRowField != null && inst.opcode == OpCodes.Bne_Un)
                 {
                     yield return new CodeInstruction(OpCodes.Ldarg_0);
                     yield return new CodeInstruction(OpCodes.Ldfld, widgetRowField);

@@ -22,13 +22,21 @@
 		<Exec Command="rd &quot;$(ProjectDir)\obj&quot; &quot;$(ProjectDir)\bin&quot; /S /Q" />
 	</Target>
 
+	<!-- <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+		<ItemGroup>
+		<ReferencePath Condition="'%(FileName)' == 'Mono.Cecil'">
+			<Aliases>MC</Aliases>
+		</ReferencePath>
+		</ItemGroup>
+	</Target> -->
+
  	<ItemGroup>
 	 	<!-- Mod -->
 	 	<Compile Include="../*" />
 
-		<Reference Include="../../Assemblies/Mono.Cecil.dll">
+		<!-- <Reference Include="../../Assemblies/Mono.Cecil.dll">
 			<Private>False</Private>
-		</Reference>
+		</Reference> -->
 
 	 	<!-- Rimworld -->
 	 	<Reference Include="../../packages/*.dll">

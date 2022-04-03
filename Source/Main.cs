@@ -24,6 +24,8 @@ using Mono.Cecil;
 
 namespace RuntimeDLLInjector
 {
+    // extern alias MC;
+
     [StaticConstructorOnStartup]
     public class RuntimeDLLInjectorController : Mod
     {
@@ -50,8 +52,12 @@ namespace RuntimeDLLInjector
                 // need to change internal dll name so that you can inject it many times
                 using(MemoryStream memStream = new MemoryStream())
                 {
+                    var resolver = new DefaultAssemblyResolver();
+                    var resolverPath = $"{rootDir}\\packages\\".Replace("\\", "/");
+                    resolver.AddSearchDirectory(resolverPath);
+
                     var newAsmName = Guid.NewGuid().ToString();
-                    using (var asmCecil = AssemblyDefinition.ReadAssembly(fileName))
+                    using (var asmCecil = AssemblyDefinition.ReadAssembly(fileName, new ReaderParameters { AssemblyResolver = resolver }))
                     {
                         asmCecil.Name = new AssemblyNameDefinition(newAsmName, Version.Parse("1.0.0.0"));
                         asmCecil.Write(memStream);
